@@ -1,0 +1,89 @@
+// Font
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300,400,700&display=swap');
+
+// Custom bootstrap includes
+@import '~bootstrap/scss/functions';
+@import 'sass/variables';
+
+// Main boostrap
+@import '~bootstrap/scss/bootstrap';
+
+// Globals 
+body {
+    font-family: Roboto, 'sans-serif';
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none !important;
+    color: #000;
+}
+
+// Bootstrap overrides
+.navbar {
+    .navbar-brand {
+        font-size: 14px;
+        font-weight: 700;
+        color: #fff;
+        text-transform: uppercase;
+        text-shadow: 3px 3px 0px rgba(44, 33, 223, .5);
+    }
+
+    .main-nav {
+        margin-left: auto;
+
+        .nav-link {
+            font-weight: 400;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1.2px;
+            color: #000;
+
+            .active {
+                color: #fff;
+            }
+
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+}
+
+.form-control {
+    border-radius: 0 !important;
+}
+
+.text-small {
+    font-size: 10px;
+}
+
+.content {
+    min-height: calc(100vh - 173px);
+
+    @media only screen and (max-width: 768px) {
+        min-height: calc(100vh - 173px);
+    }
+}
+
+.bottom-spacer {
+    height: 75px;
+}
+
+.footer {
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    .footer-copyright {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+        letter-spacing: 1.2px;
+        color: #fff;
+        text-transform: uppercase;
+    }
+}
