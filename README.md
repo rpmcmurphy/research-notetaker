@@ -9,8 +9,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="https://github.com/rpmcmurphy/research-notetaker/blob/main/public/images/research-notes.png?raw=true" alt="Research notes logo" width="80" height="80">
+  <a href="https://github.com/rpmcmurphy/research-notetaker.git">
+    <img src="https://github.com/rpmcmurphy/research-notetaker/blob/main/public/images/research-notes.png?raw=true" alt="Research notetaker logo" width="80" height="80">
+    <img src="public/images/research-notes.png?raw=true" alt="Research notetaker logo" width="80" height="80">
   </a>
 
 <h3 align="center">Research note-taking application built with Laravel.</h3>
@@ -49,7 +50,9 @@
 
 ## About The Project
 
-[![Research notes][product-screenshot]](https://github.com/rpmcmurphy/research-notetaker/blob/main/public/images/research-notes.jpg)
+[![Research notetaker][product-screenshot]](https://github.com/rpmcmurphy/research-notetaker/blob/main/public/images/research-notes.jpg)
+
+![Research notetaker](https://github.com/rpmcmurphy/research-notetaker/blob/main/public/images/research-notes.jpg)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
