@@ -1,16 +1,9 @@
 <div id="top"></div>
-<!-- PROJECT SHIELDS -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/rpmcmurphy/research-notetaker.git">
-    <img src="https://github.com/rpmcmurphy/research-notetaker/blob/main/public/images/research-notes.png?raw=true" alt="Research notetaker logo" width="80" height="80">
     <img src="public/images/research-notes.png?raw=true" alt="Research notetaker logo" width="80" height="80">
   </a>
 
@@ -50,9 +43,7 @@
 
 ## About The Project
 
-[![Research notetaker][product-screenshot]](https://github.com/rpmcmurphy/research-notetaker/blob/main/public/images/research-notes.jpg)
-
-![Research notetaker](https://github.com/rpmcmurphy/research-notetaker/blob/main/public/images/research-notes.jpg)
+![Research notetaker](public/images/research-notes.jpg)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
