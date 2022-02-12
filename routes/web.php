@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\DownloadsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,9 @@ Route::get('/details/{id}', [DetailController::class, 'show'])->name('details.sh
 Route::get('/details/{id}/edit', [DetailController::class, 'edit'])->name('details.edit');
 Route::post('/details/{id}', [DetailController::class, 'update'])->name('details.update');
 Route::post('/details/destroy/{id}', [DetailController::class, 'destroy'])->name('details.destroy');
+Route::post('/details-delete-file', [DetailController::class, 'delete_file'])->name('details.delete_file');
 
 Route::get('/search', [DetailController::class, 'search'])->name('search');
 Route::post('/search', [DetailController::class, 'search_result'])->name('search.result');
+
+Route::get('/download/{file_path}', [DownloadsController::class, 'download'])->name('download');

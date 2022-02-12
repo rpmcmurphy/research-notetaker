@@ -11,7 +11,7 @@ class HomeController extends Controller
     {
         // return all details
         $topics = Topic::all();
-        $details = Detail::paginate(10);
+        $details = Detail::orderBy('created_at', 'DESC')->paginate(10);
 
         return view('home.index', ['details' => $details, 'topics' => $topics]);
     }

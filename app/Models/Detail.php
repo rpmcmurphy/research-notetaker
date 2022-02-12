@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Detail extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['details_name', 'topic_id', 'details', 'files_images'];
 }

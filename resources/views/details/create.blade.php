@@ -4,8 +4,17 @@
 
 @section('content')
     <div class="row">
+        <div class="col-12">
+            @if ($message = Session::get('message'))
+                <div class="alert alert-success alert-block">
+                    {{ $message }}
+                </div>
+            @endif
+        </div>
+    </div>
+    <div class="row">
         <div class="col-12 col-md-6">
-            <form class="bg-white px-8 pt-6 pb-8 mb-4" method="POST" action="{{ route('details.store') }}">
+            <form class="bg-white px-8 pt-6 pb-8 mb-4" method="POST" action="{{ route('details.store') }}" enctype="multipart/form-data" >
                 @csrf
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="details-name">
@@ -31,6 +40,12 @@
                         Details
                     </label>
                     <textarea class="form-control" name="details" id="details" cols="30" rows="10" placeholder="Details name"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="details-name">
+                        Images/Files
+                    </label>
+                    <input class="form-control" type="file" name="files_images[]" multiple>
                 </div>
                 <div class="flex items-center justify-between">
                     <input

@@ -1,5 +1,7 @@
 // Font
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300,400,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/css/regular';
 
 // Custom bootstrap includes
 @import '~bootstrap/scss/functions';
@@ -58,11 +60,30 @@ a {
     font-size: 10px;
 }
 
+.btn-small {
+    padding: 3px 7px;
+    font-size: 12px;
+}
+
 .content {
     min-height: calc(100vh - 173px);
 
     @media only screen and (max-width: 768px) {
         min-height: calc(100vh - 173px);
+    }
+}
+
+.image-card {
+    height: 100%;
+
+    .card-body {
+        flex-direction: column;
+    }
+
+    .detail-files {
+        max-width: 100%;
+        height: auto;
+        overflow: hidden;
     }
 }
 

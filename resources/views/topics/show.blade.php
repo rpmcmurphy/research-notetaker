@@ -25,11 +25,13 @@
                 </div>
             </form>
 
+            <hr>
+
             <form class="" role="form" method="POST"
                 action="{{ route('topics.destroy', $topic->id) }}">
                 @csrf
 
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-danger">
                     Delete
                 </button>
             </form>
