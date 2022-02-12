@@ -14,7 +14,7 @@ class AddFilesImagesFieldToDetailsTable extends Migration
     public function up()
     {
         Schema::table('details', function (Blueprint $table) {
-            $table->string('files_images')->nullable();
+            $table->text('files_images')->nullable()->after('details');
         });
     }
 
