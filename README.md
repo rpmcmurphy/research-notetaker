@@ -72,6 +72,7 @@ You will need Laravel 8. Here are some of the things I have done in the project-
 3. Has conditional search implementation
 4. Seelc2 for multi-select implementation
 5. Eloquent relationship implementation
+6. All the API endpoints implemented for React/Vue implementation
 
 -   npm
     ```sh
@@ -114,7 +115,7 @@ This application can be used to build a personal database on topics you add, plu
 
 ## Roadmap
 
--   [ ] Implement API
+-   [X] Implement API
 -   [ ] Replace the front-end with React
 -   [X] Add option for multi-topic detail for more flexibility
 

@@ -69,9 +69,6 @@ class DetailController extends Controller
 
         $details->save();
 
-        // $user = App\Models\User::first(); // John Doe
-        // $roles = App\Models\Role::all()->pluck('id'); // Admin, User
-
         $created_detail = Detail::find($details->id);
         $created_detail->topics()->attach($request->topic_ids);
 
