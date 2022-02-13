@@ -41,3 +41,8 @@ Route::get('/search', [DetailController::class, 'search'])->name('search');
 Route::post('/search', [DetailController::class, 'search_result'])->name('search.result');
 
 Route::get('/download/{file_path}', [DownloadsController::class, 'download'])->name('download');
+
+// React version
+Route::get('/react', function () {
+    return view('react.index');
+});
