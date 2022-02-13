@@ -17,10 +17,10 @@ class CreateDetailsTable extends Migration
             $table->id();
             $table->string('details_name');
             $table->string('details');
-            $table->unsignedBigInteger('topic_id');
+            // $table->string('topic_id');
             $table->timestamps();
 
-            $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
+            // $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
         });
     }
 

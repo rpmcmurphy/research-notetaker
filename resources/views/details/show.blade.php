@@ -30,13 +30,13 @@
                         placeholder="{{ $details->details_name }}">
                 </div>
                 <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="details-name">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="topic_ids">
                         Topic
                     </label>
-                    <select class="form-control" name="topic_id" id="topic_id">
+                    <select class="form-control" name="topic_ids[]" id="topic_ids" multiple="">
                         <option value="">Select topic</option>
                         @foreach($topics as $topic)
-                            <option value="{{ $topic->id }}" @if($topic->id == $details->topic_id) selected @endif>{{ $topic->name }}</option>
+                            <option value="{{ $topic->id }}" @if(in_array( $topic->id, $details->topics->pluck('id')->toArray())) selected="" @endif>{{ $topic->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -116,6 +116,12 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
+            $("#topic_ids").select2({
+                multiple: true,
+                tags: true,
+                placeholder: "Select topic",
+            });
+
             $('.delete-image').click(function(e) {
                 e.preventDefault();
 

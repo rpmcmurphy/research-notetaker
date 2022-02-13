@@ -10,4 +10,9 @@ class Topic extends Model
     use HasFactory;
 
     protected $fillable = ['topic_name'];
+
+    public function details()
+    {
+        return $this->belongsToMany(Detail::class);
+    }
 }

@@ -38,7 +38,8 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav>{{-- ./navbar --}}
+
     <div class="container content">
         <div class="row">
             <div class="col-md-6 py-4 mt-3">

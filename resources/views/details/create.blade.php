@@ -25,10 +25,10 @@
                         id="details-name" type="text" name="details_name" placeholder="Details name">
                 </div>
                 <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="details-name">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="topic_ids">
                         Topic
                     </label>
-                    <select class="form-control" name="topic_id" id="topic_id">
+                    <select class="form-control" name="topic_ids[]" id="topic_ids" multiple="">
                         <option value="">Select topic</option>
                         @foreach($topics as $topic)
                             <option value="{{ $topic->id }}">{{ $topic->name }}</option>
@@ -36,7 +36,7 @@
                     </select>
                 </div>
                 <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="details-name">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="details">
                         Details
                     </label>
                     <textarea class="form-control" name="details" id="details" cols="30" rows="10" placeholder="Details name"></textarea>
@@ -54,4 +54,16 @@
             </form>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            $("#topic_ids").select2({
+                multiple: true,
+                tags: true,
+                placeholder: "Select topic",
+            });
+        });
+    </script>
 @endsection

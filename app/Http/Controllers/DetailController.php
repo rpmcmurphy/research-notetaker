@@ -32,17 +32,15 @@ class DetailController extends Controller
 
     public function store(Request $request)
     {
-        // Store a topic
+        // Store a detail
         $this->validate($request, [
             'details_name' => 'required|min:3',
-            'topic_id' => 'required',
             'details' => 'required|min:3'
         ]);
 
         $details = new Detail();
 
         $details->details_name = $request->details_name;
-        $details->topic_id = $request->topic_id;
         $details->details = $request->details;
 
         if ($request->hasFile('files_images')) {
@@ -71,6 +69,12 @@ class DetailController extends Controller
 
         $details->save();
 
+        // $user = App\Models\User::first(); // John Doe
+        // $roles = App\Models\Role::all()->pluck('id'); // Admin, User
+
+        $created_detail = Detail::find($details->id);
+        $created_detail->topics()->attach($request->topic_ids);
+
         return Redirect::route('details.index')->with('message', 'Your details has been created.');
     }
 
@@ -78,7 +82,9 @@ class DetailController extends Controller
     {
         // Show topic
         $topics = Topic::all();
-        return view('details.show', ['details' => Detail::findOrFail($id), 'topics' => $topics]);
+        $details = Detail::with('topics')->findOrFail($id);
+
+        return view('details.show', ['details' => $details, 'topics' => $topics]);
     }
 
     public function edit($id)
@@ -90,14 +96,12 @@ class DetailController extends Controller
     {
         $this->validate($request, [
             'details_name' => 'required|min:3',
-            'topic_id' => 'required',
             'details' => 'required|min:3'
         ]);
 
         $details = Detail::where('id', $request->id)->firstOrFail();
 
         $details->details_name = $request->details_name;
-        $details->topic_id = $request->topic_id;
         $details->details = $request->details;
 
         if ($request->hasFile('files_images')) {
@@ -125,6 +129,9 @@ class DetailController extends Controller
         }
 
         $details->save();
+
+        $created_detail = Detail::find($details->id);
+        $created_detail->topics()->sync($request->topic_ids);
 
         return Redirect::route('details.show', $details->id)->with('message', 'Your details has been updated');
     }
