@@ -1,12 +1,12 @@
-import React from 'react'
-import ReactDom from 'react-dom'
+import React from 'react';
+import ReactDom from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-function Home() {
-    return (
-        <div>
-            React implementation here
-        </div>
-    )
-}
+import App from './react-app/App';
 
-ReactDom.render(<Home />, document.getElementById('root'))
+ReactDom.render(
+    <Router>
+        <App /> 
+    </Router>,
+    document.getElementById('root')
+);

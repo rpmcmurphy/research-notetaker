@@ -15,7 +15,6 @@
 
 <div class="row">
     <div class="col-12 col-md-6">
-        {{-- search details by text, title or id --}}
         <form action="{{ route('search') }}" method="post">
             @csrf
             <div class="form-group mb-3">
