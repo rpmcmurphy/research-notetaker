@@ -31,6 +31,7 @@
                 <input type="text" class="form-control" name="term" id="term" placeholder="Search by text, topic">
             </div>
             <button type="submit" class="btn btn-primary">Search</button>
+        </form>
     </div>
 </div>
 

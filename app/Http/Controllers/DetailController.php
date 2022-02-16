@@ -196,17 +196,26 @@ class DetailController extends Controller
         $topic_id = $request->topic;
 
         $topics = Topic::all();
+        $details = Detail::with(['topics'])->newQuery();
 
-        $details = DB::table('details')
-        ->when(isset($term), function ($query) use ($term) {
-            $query->where('details_name', 'LIKE', '%' . $term . '%');
-            $query->orWhere('details', 'LIKE', '%' . $term . '%');
-        })
-        ->when(isset($topic_id), function ($query) use ($topic_id) {
-            $query->where('topic_id', $topic_id);
-        })
-        ->get();
+        if ($request->has('term') && $request->term != '' && $request->term != null) {
+            $details->where(function($query) {
+                $query->where('details_name', 'LIKE', '%' . request()->term . '%')
+                    ->orWhere('details', 'LIKE', '%' . request()->term . '%');
+            });
+        }
 
-        return view('details.result', ['details' => $details, 'topics' => $topics]);
+        if ($request->has('topic')) {
+            $details->whereHas(
+                'topics',
+                function ($query) use ($topic_id) {
+                    $query->where('topics.id', $topic_id);
+                }
+            );
+        }
+
+        $result = $details->get();
+
+        return view('details.result', ['details' => $result, 'topics' => $topics]);
     }
 }
