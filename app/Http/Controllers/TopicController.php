@@ -84,6 +84,6 @@ class TopicController extends Controller
         $topic = Topic::find($id);
         $topic->delete();
 
-        return Redirect::route('topics.index')->with('message', $topic->name . ' has been created');
+        return Redirect::route('topics.index')->with('message', $topic->name . ' has been deleted.');
     }
 }

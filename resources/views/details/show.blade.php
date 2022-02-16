@@ -115,7 +115,7 @@
                 action="{{ route('details.destroy', $details->id) }}">
                 @csrf
 
-                <button type="submit" class="btn btn-danger">
+                <button onclick="return confirm('Are you sure you want to delete this item?')" type="submit" class="btn btn-danger">
                     Delete
                 </button>
             </form>
