@@ -4,6 +4,25 @@
 
 @section('content')
     <div class="row">
+        <div class="col-12">
+            @if ($message = Session::get('message'))
+                <div class="alert alert-success alert-block">
+                    {{ $message }}
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
+    </div>
+    <div class="row">
         <div class="col-12 col-md-8">
             <h5 class="d-flex align-items-center justify-content-between mb-3">
                 <span>{{ $topic->name }}</span>
