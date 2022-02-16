@@ -187,6 +187,20 @@ class DetailController extends Controller
         $detail = Detail::find($id);
         $detail->delete();
 
+        if ($detail) {
+            $files_images = json_decode($detail->files_images);
+
+            if ($files_images) {
+                foreach ($files_images as $file) {
+                    $full_image_path = public_path('storage/' . $file);
+
+                    if (File::exists($full_image_path)) {
+                        File::delete($full_image_path);
+                    }
+                }
+            }
+        }
+
         return Redirect::route('details.index')->with('message', $detail->details_name . ' has been deleted.');
     }
 
