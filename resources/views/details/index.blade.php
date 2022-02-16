@@ -21,7 +21,7 @@
             <div class="form-group mb-3">
                 <label for="search">Topic</label>
                 <select name="topic" id="topic" class="form-control">
-                    {{-- <option value="">Select Topic</option> --}}
+                    <option value="">Select Topic</option>
                     @foreach ($topics as $topic)
                         <option value="{{ $topic->id }}">{{ $topic->name }}</option>
                     @endforeach
