@@ -20,7 +20,7 @@ class DownloadsController extends Controller
                 'Content-Disposition' => 'attachment; filename="' . $filename . '.' . $extension . '"',
             ];
 
-            return response()->download(base64_decode($file_path), 'filename.pdf', $headers);
+            return response()->download(base64_decode($file_path), $filename . '.' . $extension, $headers);
         } else {
             return redirect()->back()->with('error', 'File not found.');
         }
