@@ -28,7 +28,14 @@ class TopicController extends Controller
         $this->validate($request, [
             'topic_name' => 'required|min:3'
         ]);
-        
+
+        // Find if exists
+        $existing_topic = Topic::where('name', $request->topic_name)->first();
+
+        if ($existing_topic) {
+            return Redirect::route('topics.index')->with('message', 'Topic already exists.');
+        }
+
         $topic = new Topic();
 
         $topic->name = $request->topic_name;
@@ -55,6 +62,13 @@ class TopicController extends Controller
         $this->validate($request, [
             'topic_name' => 'required|max:255'
         ]);
+
+        // Find if exists
+        $existing_topic = Topic::where('name', $request->topic_name)->first();
+
+        if ($existing_topic && $existing_topic->id != $request->id) {
+            return Redirect::route('topics.index')->with('message', 'Topic already exists.');
+        }
 
         $topic = Topic::where('id', $request->id)->firstOrFail();
         $topic->name = $request->input('topic_name');

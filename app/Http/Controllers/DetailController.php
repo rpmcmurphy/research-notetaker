@@ -38,6 +38,13 @@ class DetailController extends Controller
             'details' => 'required|min:3'
         ]);
 
+        // Find if exists
+        $existin_detail = Detail::where('details_name', $request->details_name)->first();
+
+        if ($existin_detail) {
+            return Redirect::route('details.index')->with('message', 'Detail already exists.');
+        }
+
         $details = new Detail();
 
         $details->details_name = $request->details_name;
@@ -95,6 +102,13 @@ class DetailController extends Controller
             'details_name' => 'required|min:3',
             'details' => 'required|min:3'
         ]);
+
+        // Find if exists
+        $existing_detail = Detail::where('details_name', $request->details_name)->first();
+
+        if ($existing_detail && $existing_detail->id != $request->id) {
+            return Redirect::route('details.index')->with('message', 'Detail already exists.');
+        }
 
         $details = Detail::where('id', $request->id)->firstOrFail();
 
