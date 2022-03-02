@@ -26,7 +26,7 @@ class DetailController extends Controller
     {
         // topic create form 
 
-        $topics = Topic::all();
+        $topics = Topic::orderBy('name', 'ASC')->get();
         return view('details.create', ['topics' => $topics]);
     }
 
@@ -52,7 +52,7 @@ class DetailController extends Controller
 
         if ($request->hasFile('files_images')) {
 
-            $allowedfileExtension = ['pdf', 'jpg', 'png', 'gif', 'bmp', 'docx'];
+            $allowedfileExtension = ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'docx'];
             $files = $request->file('files_images');
 
             foreach ($files as $file) {
@@ -85,7 +85,7 @@ class DetailController extends Controller
     public function show($id)
     {
         // Show topic
-        $topics = Topic::all();
+        $topics = Topic::orderBy('name', 'ASC')->get();
         $details = Detail::with('topics')->findOrFail($id);
 
         return view('details.show', ['details' => $details, 'topics' => $topics]);
@@ -117,7 +117,7 @@ class DetailController extends Controller
 
         if ($request->hasFile('files_images')) {
 
-            $allowedfileExtension = ['pdf', 'jpg', 'png', 'gif', 'bmp', 'docx'];
+            $allowedfileExtension = ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'docx'];
             $files = $request->file('files_images');
 
             foreach ($files as $file) {

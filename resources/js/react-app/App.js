@@ -3,23 +3,31 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import "./App.scss";
+
 import NavigationLinks from './navigation/NavigationLinks';
 import NavigationComponent from './navigation/NavigationComponent';
 
 const App = () => {
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <NavigationLinks />
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <NavigationComponent />
-                </Col>
-            </Row>
-        </Container>
+        <>
+            <div className="navWrapper">
+                <Container fluid>
+                    <Row>
+                        <Col>
+                            <NavigationLinks />
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+            <Container fluid>
+                <Row>
+                    <Col>
+                        <NavigationComponent />
+                    </Col>
+                </Row>
+            </Container>
+        </>
     );
 };
 

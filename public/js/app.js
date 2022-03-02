@@ -19150,6 +19150,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/css/app-react.scss":
+/*!**************************************!*\
+  !*** ./resources/css/app-react.scss ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./node_modules/select2/dist/js/select2.js":
 /*!*************************************************!*\
   !*** ./node_modules/select2/dist/js/select2.js ***!
@@ -25462,7 +25475,8 @@ S2.define('jquery.select2',[
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
-/******/ 			"css/app": 0
+/******/ 			"css/app": 0,
+/******/ 			"css/app-react": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -25512,8 +25526,9 @@ S2.define('jquery.select2',[
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/app-react"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/app-react"], () => (__webpack_require__("./resources/css/app.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/app-react"], () => (__webpack_require__("./resources/css/app-react.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

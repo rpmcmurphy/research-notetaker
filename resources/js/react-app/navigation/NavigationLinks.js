@@ -1,12 +1,12 @@
 import React from 'react';
-import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
+import { Container, Row, Col, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 const NavigationLinks = () => {
     return (
         <>
-            <Navbar bg="white" expand="lg">
-                <Container>
+            <Navbar bg="dark" expand="lg" variant="dark">
+                <Container fluid>
                     <Navbar.Brand href="/react">React-Bootstrap</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
