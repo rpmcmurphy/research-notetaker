@@ -20,7 +20,7 @@ const App = () => {
                     </Row>
                 </Container>
             </div>
-            <Container fluid>
+            <Container>
                 <Row>
                     <Col>
                         <NavigationComponent />

@@ -1,25 +1,17 @@
 import { Route, Routes } from 'react-router-dom';
 
+import NotFoundComponent from '../components/NotFoundComponent';
 import HomeComponent from '../components/HomeComponent';
 import TestComponent from '../components/TestComponent';
-
-const ReactComponent = () => {
-    return (
-        <>
-            <div className="react-component">
-                React component
-            </div>
-        </>
-    );
-};
 
 const NavigationComponent = () => {
     return (
         <>
-            <Routes basename='/react'>
-                <Route exact path='react/' element={<ReactComponent />} />
-                <Route path='/react/home' element={<HomeComponent />} />
-                <Route path='/react/test' element={<TestComponent />} />
+            <Routes>
+                <Route path='*' element={<NotFoundComponent />} />
+                <Route exact path='/' element={<HomeComponent />} />
+                <Route path='/home' element={<HomeComponent />} />
+                <Route path='/test' element={<TestComponent />} />
             </Routes>
         </>
     );
