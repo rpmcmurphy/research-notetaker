@@ -7,7 +7,7 @@
     <img src="public/images/research-notes.png?raw=true" alt="Research notetaker logo" width="80" height="80">
   </a>
 
-<h3 align="center">Research note-taking application built with Laravel.</h3>
+<h3 align="center">Research note-taking application built with Laravel and React.</h3>
 
   <p align="center">
     A project to help take notes on different topics and browse through later for convenience.
