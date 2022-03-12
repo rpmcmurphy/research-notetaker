@@ -50,6 +50,7 @@
 ### Built With
 
 -   [Laravel](https://laravel.com/)
+-   [React](https://reactjs.org)
 -   [Bootstrap](https://getbootstrap.com)
 -   [jQuery](https://jquery.com)
 -   [MySQL](https://www.mysql.com)

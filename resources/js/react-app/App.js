@@ -27,6 +27,28 @@ const App = () => {
                     </Col>
                 </Row>
             </Container>
+            <div className="footerWrapper">
+                <Container fluid>
+                    <Row>
+                        <Col>
+                            <div className="footer">
+                                <a href="#" className="footerLink">
+                                    About
+                                </a>
+                                <a href="#" className="footerLink">
+                                    Contact
+                                </a>
+                                <a href="#" className="footerLink">
+                                    Terms
+                                </a>
+                                <a href="#" className="footerLink">
+                                    Privacy
+                                </a>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
         </>
     );
 };

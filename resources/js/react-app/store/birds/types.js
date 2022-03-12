@@ -1,0 +1,7 @@
+const ADD_BIRD = 'ADD_BIRD';
+const INCREMENT_BIRD = 'INCREMENT_BIRD';
+
+export {
+    ADD_BIRD,
+    INCREMENT_BIRD,
+};

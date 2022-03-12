@@ -1,10 +1,13 @@
 import React from 'react';
+import { Row, Col } from 'react-bootstrap';
 
 const NotFoundComponent = () => {
     return (
-        <div>
-            Nothin' here.
-        </div>
+        <Row>
+            <Col>
+                <h5>Nothing Found.</h5>
+            </Col>
+        </Row>
     );
 };
 

@@ -4,6 +4,7 @@ use App\Models\Topic;
 use App\Models\Detail;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
@@ -23,9 +24,31 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/topic-list', function () {
+
+    // get all topic ID and name, and sort by name
+    $topic_list = Topic::select('id', 'name')->orderBy('name')->get();
+
+    return response()->json([
+        'data' => $topic_list,
+        'status' => 'success',
+    ], 200);
+});
+
+Route::get('/topic-list-react-select', function () {
+
+    // get all topic ID and name, and sort by name
+    $topic_list = Topic::select(['id AS value', 'name AS label'])->orderBy('name')->get();
+
+    return response()->json([
+        'data' => $topic_list,
+        'status' => 'success',
+    ], 200);
+});
+
 Route::get('/topic-list/{page_num?}', function ($page_num = 1) {
 
-    $topic_list = Topic::paginate(10, ['id', 'name'], 'page', $page_num);
+    $topic_list = Topic::orderBy('name', 'asc')->paginate(10, ['id', 'name'], 'page', $page_num);
 
     return response()->json([
         'data' => $topic_list,
@@ -59,6 +82,17 @@ Route::post('/topic-add', function (Request $request) {
         ], 200);
     }
 
+    // Find if topic name already exists
+    $topic_name = $request->input('topic_name');
+    $topic_exists = Topic::where('name', $topic_name)->first();
+
+    if ($topic_exists) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Topic name already exists!'
+        ], 200);
+    }
+
     $topic = new Topic();
     $topic->name = $request->topic_name;
     $topic->save();
@@ -77,9 +111,10 @@ Route::post('/topic-add', function (Request $request) {
     }
 });
 
-Route::post('/topic-update/{id}', function (Request $request, $id) {
+Route::post('/topic-update', function (Request $request) {
 
     $validator = Validator::make($request->all(), [
+        'id' => 'required',
         'topic_name' => 'required|min:3',
     ]);
 
@@ -93,7 +128,18 @@ Route::post('/topic-update/{id}', function (Request $request, $id) {
         ], 200);
     }
 
-    $topic = Topic::where('id', $id)->firstOrFail();
+    // Find if topic name already exists
+    $topic_name = $request->topic_name;
+    $topic_exists = Topic::where('name', $topic_name)->first();
+
+    if ($topic_exists) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Topic name already exists!'
+        ], 200);
+    }
+
+    $topic = Topic::where('id', $request->id)->firstOrFail();
     $topic->name = $request->topic_name;
     $topic->save();
 
@@ -111,7 +157,7 @@ Route::post('/topic-update/{id}', function (Request $request, $id) {
     }
 });
 
-Route::post('/topic-delete/{id}', function ($id) {
+Route::get('/topic-delete/{id}', function ($id) {
 
     $topic = Topic::where('id', $id)->firstOrFail();
 
@@ -136,6 +182,7 @@ Route::get('/detail-list/{page_num?}', function ($page_num = 1) {
         ->with(['topics' => function ($query) {
             $query->select('id', 'name');
         }])
+        ->orderBy('created_at', 'desc')
         ->paginate(10, ['id', 'details_name', 'details', 'files_images'], 'page', $page_num);
 
     return response()->json([
@@ -147,7 +194,7 @@ Route::get('/detail-list/{page_num?}', function ($page_num = 1) {
 Route::get('/detail/{id}', function($id) {
     $detail = Detail::query()
         ->with(['topics' => function ($query) {
-            $query->select('id', 'name');
+            $query->select('id');
         }])
         ->where('id', $id)
         ->first();
@@ -171,7 +218,19 @@ Route::post('/detail-add', function(Request $request) {
 
         return response()->json([
             'status' => 'error',
-            'message' => $message
+            'type' => 'validation',
+            'message' => Arr::flatten($message->all())
+        ], 200);
+    }
+
+    // Find if details name already exists
+    $details_name = $request->details_name;
+    $details_exists = Detail::where('details_name', $details_name)->first();
+
+    if ($details_exists) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Details name already exists!'
         ], 200);
     }
 
@@ -215,6 +274,7 @@ Route::post('/detail-add', function(Request $request) {
     if($details) {
         return response()->json([
             'data' => $details,
+            'message' => 'Detail created successfully!',
             'status' => 'success',
         ], 200);
     } else {
@@ -225,7 +285,7 @@ Route::post('/detail-add', function(Request $request) {
     }
 });
 
-Route::post('/detail-update/{id}', function (Request $request, $id) {
+Route::patch('/detail-update', function (Request $request) {
 
     $validator = Validator::make($request->all(), [
         'details_name' => 'required|min:3',
@@ -242,14 +302,25 @@ Route::post('/detail-update/{id}', function (Request $request, $id) {
         ], 200);
     }
 
-    $details = Detail::where('id', $id)->firstOrFail();
+    // Find if details name already exists
+    $details_name = $request->details_name;
+    $details_exists = Detail::where('details_name', $details_name)->where('id', '!=', $request->id)->first();
+
+    if ($details_exists) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Details name already exists!'
+        ], 200);
+    }
+
+    $details = Detail::where('id', $request->id)->firstOrFail();
 
     $details->details_name = $request->details_name;
     $details->details = $request->details;
 
     if ($request->hasFile('files_images')) {
 
-        $allowedfileExtension = ['pdf', 'jpg', 'png', 'gif', 'bmp', 'docx'];
+        $allowedfileExtension = ['pdf', 'jpg', 'png', 'gif', 'bmp', 'docx', 'txt'];
         $files = $request->file('files_images');
 
         foreach ($files as $file) {
@@ -277,7 +348,7 @@ Route::post('/detail-update/{id}', function (Request $request, $id) {
     $details->save();
 
     $created_detail = Detail::find($details->id);
-    $created_detail->topics()->attach($request->topic_ids);
+    $created_detail->topics()->sync(explode(',', $request->topic_ids));
 
     if ($details) {
         return response()->json([
@@ -340,8 +411,8 @@ Route::post('/delete-file', function(Request $request) {
     }
 });
 
-Route::post('/detail-delete/{id}', function($id) {
-    
+Route::get('/detail-delete/{id}', function($id) {
+
     $details = Detail::where('id', $id)->firstOrFail();
 
     $details->delete();
@@ -357,4 +428,83 @@ Route::post('/detail-delete/{id}', function($id) {
             'message' => 'Something went wrong. Please try again.',
         ], 200);
     }
+});
+
+Route::post('/search-result', function(Request $request) {
+
+    $term = $request->searchTerm;
+    $topic_id = $request->topicId;
+
+    $topics = Topic::all();
+    $details = Detail::with(['topics'])->newQuery();
+
+    if ($request->has('searchTerm') && $term != '' && $term != null) {
+        $details->where(function ($query) use ($term) {
+            $query->where('details_name', 'LIKE', '%' . $term . '%')
+                ->orWhere('details', 'LIKE', '%' . $term . '%');
+        });
+    }
+
+    if ($request->has('topicId') && $topic_id != '' && $topic_id != null) {
+        $details->whereHas(
+            'topics',
+            function ($query) use ($topic_id) {
+                $query->where('topics.id', $topic_id);
+            }
+        );
+    }
+
+    $details = $details->get();
+
+    if ($details) {
+        return response()->json([
+            'details' => $details,
+            'topics' => $topics,
+            'status' => 'success',
+        ], 200);
+    } else {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Something went wrong. Please try again.',
+        ], 200);
+    }
+});
+
+// Routes for testing purpose only
+Route::post('/test-file-upload', function (Request $request) {
+
+    if ($request->hasFile('files_images')) {
+
+        $allowedfileExtension = ['pdf', 'jpg', 'png', 'gif', 'bmp', 'docx', 'txt'];
+        $files = $request->file('files_images');
+
+        foreach ($files as $file) {
+            $filename = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $check = in_array($extension, $allowedfileExtension);
+            $filename_without_ext = pathinfo($filename, PATHINFO_FILENAME);
+
+            // return $filename;
+
+            if ($check) {
+                $filename = $file->storeAs('files_images', $filename_without_ext . '_' . Str::random(5) . '.' .  $extension, 'public');
+                if ($filename) {
+                    $stored_filenames[] = $filename;
+                }
+            } else {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'File extension not allowed.',
+                ], 200);
+            }
+        }
+
+        return response()->json([
+            'status' => 'success ends.',
+        ], 200);
+    }
+
+    return response()->json([
+        'status' => 'ZXZX',
+    ], 200);
 });

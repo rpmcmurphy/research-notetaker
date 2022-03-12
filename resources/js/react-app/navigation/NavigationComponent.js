@@ -1,17 +1,34 @@
 import { Route, Routes } from 'react-router-dom';
 
+import ContentWrapperComponent from '../components/hocs/ContentWrapperComponent';
 import NotFoundComponent from '../components/NotFoundComponent';
 import HomeComponent from '../components/HomeComponent';
-import TestComponent from '../components/TestComponent';
+import SearchComponent from '../components/SearchComponent';
+import TopicsComponent from '../components/TopicsComponent';
+import DetailsComponent from '../components/DetailsComponent';
+import AddTopicComponent from '../components/AddTopicComponent';
+import AddDetailsComponent from '../components/AddDetailsComponent';
+import UpdateTopicComponent from '../components/UpdateTopicComponent';
+import DeleteTopicComponent from '../components/DeleteTopicComponent';
+import UpdateDetailComponent from '../components/UpdateDetailComponent';
+import DeleteDetailsComponent from '../components/DeleteDetailsComponent';
 
 const NavigationComponent = () => {
     return (
         <>
             <Routes>
-                <Route path='*' element={<NotFoundComponent />} />
+                <Route path='*' element={<ContentWrapperComponent><NotFoundComponent /></ContentWrapperComponent>} />
                 <Route exact path='/' element={<HomeComponent />} />
                 <Route path='/home' element={<HomeComponent />} />
-                <Route path='/test' element={<TestComponent />} />
+                <Route path='/search' element={<SearchComponent />} />
+                <Route path='/topics' element={<ContentWrapperComponent><TopicsComponent /></ContentWrapperComponent>} />
+                <Route path='/add-topic' element={<ContentWrapperComponent><AddTopicComponent /></ContentWrapperComponent>} />
+                <Route path="topic-edit/:topicId" element={<ContentWrapperComponent><UpdateTopicComponent /></ContentWrapperComponent>} />
+                <Route path="topic-delete/:topicId" element={<ContentWrapperComponent><DeleteTopicComponent /></ContentWrapperComponent>} />
+                <Route path='/details' element={<ContentWrapperComponent><DetailsComponent /></ContentWrapperComponent>} />
+                <Route path='/add-detail' element={<ContentWrapperComponent><AddDetailsComponent /></ContentWrapperComponent>} />
+                <Route path="detail-edit/:detailId" element={<ContentWrapperComponent><UpdateDetailComponent /></ContentWrapperComponent>} />
+                <Route path="detail-delete/:detailId" element={<ContentWrapperComponent><DeleteDetailsComponent /></ContentWrapperComponent>} />
             </Routes>
         </>
     );

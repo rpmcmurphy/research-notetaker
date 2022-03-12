@@ -233,7 +233,7 @@ class DetailController extends Controller
             });
         }
 
-        if ($request->has('topic')) {
+        if ($request->has('topic') && $topic_id != '' && $topic_id != null) {
             $details->whereHas(
                 'topics',
                 function ($query) use ($topic_id) {

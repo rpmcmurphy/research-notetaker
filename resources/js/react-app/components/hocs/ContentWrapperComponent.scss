@@ -1,3 +1,5 @@
 .contentWrapper {
     margin-top: 25px;
+    margin-bottom: 25px;
+    min-height: calc(100vh - calc(112px + 25px + 25px));
 }

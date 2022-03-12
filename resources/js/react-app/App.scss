@@ -3,3 +3,31 @@
 .navWrapper {
     background-color: $dark-bg;
 }
+
+.footerWrapper {
+    background-color: $dark-bg;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer {
+    background-color: $dark-bg;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    .footerLink {
+        color: #fff;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        text-decoration: none;
+        padding: 10px;
+
+        &:hover {
+            color: $primary;
+        }
+    }
+}

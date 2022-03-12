@@ -1,0 +1,32 @@
+.list-table-item {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.list-nav-link {
+    display: inline-block;
+    padding: 2px 5px;
+    margin-right: 5px;
+    font-size: 8px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #007bff;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    transition: all 0.15s ease-in-out;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    &:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+        color: #fff;
+    }
+}

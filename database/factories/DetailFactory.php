@@ -22,7 +22,7 @@ class DetailFactory extends Factory
      */
     public function definition()
     {
-        $topics = Topic::all()->pluck('id')->toArray();
+        // $topics = Topic::all()->pluck('id')->toArray();
 
         $images_array = [];
 
@@ -35,7 +35,7 @@ class DetailFactory extends Factory
             'details_name'  => $this->faker->text(15),
             'details'       => $this->faker->paragraph(2),
             'files_images'  => json_encode($images_array),
-            'topic_id'      => $this->faker->randomElement($topics),
+            // 'topic_id'      => $this->faker->randomElement($topics),
         ];
     }
 }
