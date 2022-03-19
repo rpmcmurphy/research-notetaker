@@ -241,7 +241,7 @@ Route::post('/detail-add', function(Request $request) {
 
     if ($request->hasFile('files_images')) {
 
-        $allowedfileExtension = ['pdf', 'jpg', 'png', 'gif', 'bmp', 'docx'];
+        $allowedfileExtension = ['pdf', 'jpg', 'png', 'gif', 'bmp', 'docx', 'zip'];
         $files = $request->file('files_images');
 
         foreach ($files as $file) {
@@ -320,7 +320,7 @@ Route::patch('/detail-update', function (Request $request) {
 
     if ($request->hasFile('files_images')) {
 
-        $allowedfileExtension = ['pdf', 'jpg', 'png', 'gif', 'bmp', 'docx', 'txt'];
+        $allowedfileExtension = ['pdf', 'jpg', 'png', 'gif', 'bmp', 'docx', 'txt', 'zip'];
         $files = $request->file('files_images');
 
         foreach ($files as $file) {
@@ -475,7 +475,7 @@ Route::post('/test-file-upload', function (Request $request) {
 
     if ($request->hasFile('files_images')) {
 
-        $allowedfileExtension = ['pdf', 'jpg', 'png', 'gif', 'bmp', 'docx', 'txt'];
+        $allowedfileExtension = ['pdf', 'jpg', 'png', 'gif', 'bmp', 'docx', 'txt', 'zip'];
         $files = $request->file('files_images');
 
         foreach ($files as $file) {

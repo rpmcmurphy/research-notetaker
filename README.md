@@ -116,7 +116,7 @@ This application can be used to build a personal database on topics you add, plu
 ## Roadmap
 
 -   [X] Implement API
--   [ ] Replace the front-end with React
+-   [X] Replace the front-end with React
 -   [X] Add option for multi-topic detail for more flexibility
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).

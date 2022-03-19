@@ -13,18 +13,19 @@
 }
 
 .footer {
-    background-color: $dark-bg;
-    padding-top: 12px;
-    padding-bottom: 12px;
-
+    padding-top: 0;
+    padding-bottom: 0;
+    
     .footerLink {
-        color: #fff;
+        color: #fff !important;
         font-size: 12px;
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 1.2px;
         text-decoration: none;
-        padding: 10px;
+        padding: 10px !important;
+
+        display: inline-block;
 
         &:hover {
             color: $primary;

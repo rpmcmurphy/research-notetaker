@@ -13,6 +13,10 @@ import DeleteTopicComponent from '../components/DeleteTopicComponent';
 import UpdateDetailComponent from '../components/UpdateDetailComponent';
 import DeleteDetailsComponent from '../components/DeleteDetailsComponent';
 
+import AboutUsComponent from '../components/AboutUsComponent';
+import UsageComponent from '../components/UsageComponent';
+import LicenseComponent from '../components/LicenseComponent';
+
 const NavigationComponent = () => {
     return (
         <>
@@ -29,6 +33,9 @@ const NavigationComponent = () => {
                 <Route path='/add-detail' element={<ContentWrapperComponent><AddDetailsComponent /></ContentWrapperComponent>} />
                 <Route path="detail-edit/:detailId" element={<ContentWrapperComponent><UpdateDetailComponent /></ContentWrapperComponent>} />
                 <Route path="detail-delete/:detailId" element={<ContentWrapperComponent><DeleteDetailsComponent /></ContentWrapperComponent>} />
+                <Route path="about-us" element={<ContentWrapperComponent><AboutUsComponent /></ContentWrapperComponent>} />
+                <Route path="usage" element={<ContentWrapperComponent><UsageComponent /></ContentWrapperComponent>} />
+                <Route path="license" element={<ContentWrapperComponent><LicenseComponent /></ContentWrapperComponent>} />
             </Routes>
         </>
     );

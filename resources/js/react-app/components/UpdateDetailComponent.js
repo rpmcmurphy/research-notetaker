@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import Select from 'react-select';
@@ -8,9 +7,7 @@ import Select from 'react-select';
 import { BASE_URL } from '../common/global-vars';
 import detailApi from '../api/details';
 import SpinnerComponent from '../common/SpinnerComponent';
-
-// State managers 
-import { addBird, incrementBird } from '../store/birds/birds.actions';
+import ReduxBirdTestComponent from './ReduxBirdTestComponent';
 
 function UpdateDetailComponent() {
 
@@ -27,14 +24,6 @@ function UpdateDetailComponent() {
     const [isUpdating, setIsUpdating] = useState(false);
     const [error, setError] = useState(false);
     const [message, setMessage] = useState("");
-
-    const [birdName, setBirdName] = useState('');
-    // const birds = useSelector(state => state.birds);
-    const dispatch = useDispatch();
-
-    const birds = [...useSelector(state => state.birds)].sort((a, b) => {
-        return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1;
-    });
 
     useEffect(() => {
         let active = true;
@@ -137,13 +126,6 @@ function UpdateDetailComponent() {
         return allTopics.filter(topic => selectedTopics.find(selectedId => selectedId == topic.value)).map(id => id);
     }
 
-    const handleBirdSubmit = (e) => {
-        e.preventDefault();
-
-        dispatch(addBird(birdName));
-        setBirdName('');
-    }
-
     return (
         <>
             <Row>
@@ -216,39 +198,7 @@ function UpdateDetailComponent() {
                                 </Row>
                             </Form>
                         </Col>
-                        <Col md={6}>
-                            <Form onSubmit={handleBirdSubmit}>
-                                <Row className="mb-3">
-                                    <Form.Group as={Col} controlId="formBirdName">
-                                        <Form.Label>Add Bird</Form.Label>
-                                        <Form.Control value={ birdName } onChange={ e => setBirdName(e.target.value)} type="text" placeholder="Enter detail name" />
-                                    </Form.Group>
-                                </Row>
-                                <Row>
-                                    <Form.Group as={Col}>
-                                        <Button variant="primary" type="submit">
-                                            Add
-                                        </Button>
-                                    </Form.Group>
-                                </Row>
-                            </Form>
-                            <hr />
-                            <ul className="list-unstyled">
-                                {
-                                    birds.map(bird => (
-                                        <li key={bird.name}>
-                                            <h5 style={ { fontSize: '16px' } }>{bird.name}</h5>
-                                            <div className="d-flex align-items-center" style={{ marginLeft: '15px' }}>
-                                                <h5 style={ { fontSize: '16px', marginRight: '15px' } } className="mb-0">
-                                                    Views: { bird.views }
-                                                </h5>
-                                                <button className="btn btn-success" onClick={() => dispatch(incrementBird(bird.name))}>+</button>
-                                            </div>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
-                        </Col>
+                        {/* <ReduxBirdTestComponent /> */}
                     </Row>
                 </Col>
             </Row>

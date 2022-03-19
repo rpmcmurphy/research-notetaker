@@ -52,7 +52,7 @@ class DetailController extends Controller
 
         if ($request->hasFile('files_images')) {
 
-            $allowedfileExtension = ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'docx'];
+            $allowedfileExtension = ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'docx', 'zip'];
             $files = $request->file('files_images');
 
             foreach ($files as $file) {
@@ -117,7 +117,7 @@ class DetailController extends Controller
 
         if ($request->hasFile('files_images')) {
 
-            $allowedfileExtension = ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'docx'];
+            $allowedfileExtension = ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'docx', 'zip'];
             $files = $request->file('files_images');
 
             foreach ($files as $file) {

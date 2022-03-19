@@ -1,7 +1,8 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+
+import { Container, Row, Col, Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Link } from "react-router-dom";
+import { LinkContainer } from 'react-router-bootstrap';
 
 import "./App.scss";
 
@@ -32,18 +33,15 @@ const App = () => {
                     <Row>
                         <Col>
                             <div className="footer">
-                                <a href="#" className="footerLink">
-                                    About
-                                </a>
-                                <a href="#" className="footerLink">
-                                    Contact
-                                </a>
-                                <a href="#" className="footerLink">
-                                    Terms
-                                </a>
-                                <a href="#" className="footerLink">
-                                    Privacy
-                                </a>
+                                <LinkContainer to="/about-us">
+                                    <Nav.Link className="footerLink">About</Nav.Link>
+                                </LinkContainer>
+                                <LinkContainer to="/usage">
+                                    <Nav.Link className="footerLink">Usage</Nav.Link>
+                                </LinkContainer>
+                                <LinkContainer to="/license">
+                                    <Nav.Link className="footerLink">License</Nav.Link>
+                                </LinkContainer>
                             </div>
                         </Col>
                     </Row>
