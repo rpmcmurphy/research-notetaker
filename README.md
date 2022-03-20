@@ -45,6 +45,8 @@
 
 ![Research notetaker](public/images/research-notes.jpg)
 
+[![Watch the demo](public/images/research-notes.jpg)](public/images/research-details-demo.mp4)
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
@@ -74,7 +76,9 @@ You will need Laravel 8. Here are some of the things I have done in the project-
 3. Has conditional search implementation
 4. Seelc2 for multi-select implementation
 5. Eloquent relationship implementation
-6. All the API endpoints implemented for React/Vue implementation
+6. All the API endpoints implemented for React implementation
+7. Includes multi-image/file upload implementation, along with individual image/file delete option
+8. Seeder for the database with pivot table implementation and dynamic image generation for the detail table included
 
 -   npm
     ```sh
