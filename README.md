@@ -65,7 +65,8 @@ https://user-images.githubusercontent.com/20234216/159151299-e43b77a8-20f5-4fc6-
 
 Like you install a Laravel application, clone the repo and get started with the instructions below.
 
-PLEASE NOTE THAT THE APPLICATION HAS BOTH THE NORMAL WEB ROUTES WITH BLADE TEMPLATES AND THE API ROUTES WITH JSON RESPONSES, WHICH IS CONSUMED BY A FRONTEND REACT APP. THE WEB ROUTES ARE COMMENTED OUT. THE REACT VERSION IS LOCATED AT `resources/js/app-react.js`. AND IT'S GETTING APPENDED INTO THE BLADE FILE LOCATED AT `resources/views/react/index.blade.php`, WHICH IS THE INDEX PAGE FOR THE WEB APP, GETTING ROUTED FROM `routes/api.php`. THE NORMAL BLADE VERSION IS LOCATED AND CONFIGURED IN THE USUAL DIRECTORIES AND FILES AS PER LARAVEL CONVENTIONS.
+---Important---
+Please note that the application has both the normal web routes with blade templates and the api routes with json responses, which is consumed by a frontend react app. The web routes are commented out. The react version is located at `resources/js/app-react.Js`. And it's getting appended into the blade file located at `resources/views/react/index.Blade.Php`, which is the index page for the web app, getting routed from `routes/api.Php`. The normal blade version is located and configured in the usual directories and files as per laravel conventions.
 
 ### Prerequisites
 
