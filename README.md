@@ -45,7 +45,7 @@
 
 ![Research notetaker](public/images/research-notes.jpg)
 
-[![Watch the demo]](public/images/research-details-demo.mp4)
+https://user-images.githubusercontent.com/20234216/159151299-e43b77a8-20f5-4fc6-8812-8ed4bc664044.mp4
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
