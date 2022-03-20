@@ -7321,11 +7321,6 @@ var HomeComponent = function HomeComponent() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_8__["default"], {
         md: 6,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_DetailsComponent__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        md: 6,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_hocs_SidebarComponent__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          children: "Enjoy the moment!"
-        })
       })]
     })]
   });
@@ -87623,13 +87618,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
  // import rootReducer from './react-app/reducers/index';
 
  // const store = createStore(rootReducer, applyMiddleware(thunk));
 
 
+var store = (0,redux__WEBPACK_IMPORTED_MODULE_9__.createStore)(_react_app_store_rootReducer__WEBPACK_IMPORTED_MODULE_7__["default"], (0,redux__WEBPACK_IMPORTED_MODULE_9__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_10__["default"])); // Store data flow
+// UI calls action function with data from user, which takes the data and forms an object with action + payload, gives it to the reducer.Reducer takes the data and action, sets the new state after taking the existing state, initial state if first time, and sets a new state, returns the new state, later, as last step, this new returned state object is set as an updated key in the redux root_reducer, which finally gets stored into the store object, as this reducer is the first arg of the store function, as folows-
+// Ui -> action_call -> action_object_returned_with_data -> reducer_takes_the_obj_and_sets_new_state -> store_stores_it.
 
-var store = (0,redux__WEBPACK_IMPORTED_MODULE_9__.createStore)(_react_app_store_rootReducer__WEBPACK_IMPORTED_MODULE_7__["default"], (0,redux__WEBPACK_IMPORTED_MODULE_9__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_10__["default"]));
 react_dom__WEBPACK_IMPORTED_MODULE_4__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_redux__WEBPACK_IMPORTED_MODULE_5__.Provider, {
   store: store,
   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.BrowserRouter, {
