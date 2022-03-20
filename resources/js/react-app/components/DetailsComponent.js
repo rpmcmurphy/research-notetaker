@@ -67,7 +67,7 @@ const DetailsComponent = () => {
                                                 <Nav.Link className='list-nav-link'>View</Nav.Link>
                                             </LinkContainer>
                                             <LinkContainer to={`/detail-delete/${item.id}`}>
-                                                <Nav.Link className='list-nav-link'>Delete</Nav.Link>
+                                                <Nav.Link className='list-nav-link bg-danger'>Delete</Nav.Link>
                                             </LinkContainer>
                                         </div>
                                     </ListGroup.Item>
