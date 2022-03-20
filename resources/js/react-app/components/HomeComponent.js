@@ -19,11 +19,11 @@ const HomeComponent = () => {
                 <Col md={6}>
                     <DetailsComponent />
                 </Col>
-                <Col md={6}>
+                {/* <Col md={6}>
                     <SidebarComponent>
                         Enjoy the moment!
                     </SidebarComponent>
-                </Col>
+                </Col> */}
             </Row>
         </ContentWrapperComponent>
     );
