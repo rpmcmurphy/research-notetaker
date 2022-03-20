@@ -45,7 +45,7 @@
 
 ![Research notetaker](public/images/research-notes.jpg)
 
-[![Watch the demo](public/images/research-notes.jpg)](public/images/research-details-demo.mp4)
+[![Watch the demo]](public/images/research-details-demo.mp4)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
