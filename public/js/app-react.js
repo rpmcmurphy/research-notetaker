@@ -5986,14 +5986,13 @@ var getDetail = function getDetail(id) {
   return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/detail/".concat(id));
 };
 
-var addDetail = function addDetail(detailName, details, topicIds) {
-  return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post('/detail-add', {
-    details_name: detailName,
-    details: details,
-    topic_ids: topicIds
+var addDetail = function addDetail(formData) {
+  return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post("/detail-add", formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
   });
-}; // const updateDetail = (id, details_name, details, topic_ids, files_images) => apiClient.post(`/detail-update`, { id, details_name, details, topic_ids, files_images });
-
+};
 
 var updateDetail = function updateDetail(formData) {
   return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post("/detail-update", formData, {
@@ -6272,25 +6271,30 @@ function AddDetailsComponent() {
       topicIds = _useState8[0],
       setTopicIds = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
       _useState10 = _slicedToArray(_useState9, 2),
-      isAdding = _useState10[0],
-      setIsAdding = _useState10[1];
+      selectedFiles = _useState10[0],
+      setSelectedFiles = _useState10[1];
 
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
       _useState12 = _slicedToArray(_useState11, 2),
-      error = _useState12[0],
-      setError = _useState12[1];
+      isAdding = _useState12[0],
+      setIsAdding = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(""),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
       _useState14 = _slicedToArray(_useState13, 2),
-      errorType = _useState14[0],
-      setErrorType = _useState14[1];
+      error = _useState14[0],
+      setError = _useState14[1];
 
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(""),
       _useState16 = _slicedToArray(_useState15, 2),
-      message = _useState16[0],
-      setMessage = _useState16[1];
+      errorType = _useState16[0],
+      setErrorType = _useState16[1];
+
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(""),
+      _useState18 = _slicedToArray(_useState17, 2),
+      message = _useState18[0],
+      setMessage = _useState18[1];
 
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
@@ -6378,16 +6382,25 @@ function AddDetailsComponent() {
 
       var addNewDetail = /*#__PURE__*/function () {
         var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-          var response;
+          var formData, response;
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
             while (1) {
               switch (_context3.prev = _context3.next) {
                 case 0:
                   _context3.prev = 0;
-                  _context3.next = 3;
-                  return _api_details__WEBPACK_IMPORTED_MODULE_2__["default"].addDetail(detailName, details, topicIdsMapped);
+                  formData = new FormData();
+                  formData.append('details_name', detailName);
+                  formData.append('details', details);
+                  formData.append('topic_ids', topicIdsMapped);
+                  selectedFiles && Object.values(selectedFiles).forEach(function (file) {
+                    formData.append("files_images[]", file);
+                  });
+                  formData.append('_method', 'PATCH'); // To address php bug
 
-                case 3:
+                  _context3.next = 9;
+                  return _api_details__WEBPACK_IMPORTED_MODULE_2__["default"].addDetail(formData);
+
+                case 9:
                   response = _context3.sent;
 
                   if (response.data.status === 'success') {
@@ -6408,20 +6421,20 @@ function AddDetailsComponent() {
                     setMessage(response.data.message);
                   }
 
-                  _context3.next = 10;
+                  _context3.next = 16;
                   break;
 
-                case 7:
-                  _context3.prev = 7;
+                case 13:
+                  _context3.prev = 13;
                   _context3.t0 = _context3["catch"](0);
-                  console.log('error', _context3.t0);
+                  console.log(_context3.t0);
 
-                case 10:
+                case 16:
                 case "end":
                   return _context3.stop();
               }
             }
-          }, _callee3, null, [[0, 7]]);
+          }, _callee3, null, [[0, 13]]);
         }));
 
         return function addNewDetail() {
@@ -6508,6 +6521,21 @@ function AddDetailsComponent() {
                     return setDetails(e.target.value);
                   },
                   placeholder: "Add some details"
+                })]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+              className: "mb-3",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_8__["default"].Group, {
+                controlId: "formFileUpload",
+                className: "mb-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_8__["default"].Label, {
+                  children: "Upload images/files"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_8__["default"].Control, {
+                  type: "file",
+                  multiple: true,
+                  onChange: function onChange(e) {
+                    return setSelectedFiles(e.target.files);
+                  }
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -8403,7 +8431,6 @@ function UpdateDetailComponent() {
       newTopicIds.push(topic.value);
     });
     setTopicIds(newTopicIds);
-    console.log(newTopicIds);
   };
 
   var setDefaultValues = function setDefaultValues(allTopics) {

@@ -205,7 +205,7 @@ Route::get('/detail/{id}', function($id) {
     ], 200);
 });
 
-Route::post('/detail-add', function(Request $request) {
+Route::patch('/detail-add', function(Request $request) {
 
     $validator = Validator::make($request->all(), [
         'details_name' => 'required|min:3',
@@ -268,8 +268,9 @@ Route::post('/detail-add', function(Request $request) {
 
     $details->save();
 
-    $created_detail = Detail::find($details->id);
-    $created_detail->topics()->attach($request->topic_ids);
+    if ($request->topic_ids != null && $request->topic_ids != '') {
+        $details->topics()->attach(explode(',', $request->topic_ids));
+    }
 
     if($details) {
         return response()->json([

@@ -53,7 +53,19 @@ function AddDetailsComponent() {
 
             const addNewDetail = async () => {
                 try {
-                    const response = await detailsApi.addDetail(detailName, details, topicIdsMapped);
+                    let formData = new FormData();
+
+                    formData.append('details_name', detailName);
+                    formData.append('details', details);
+                    formData.append('topic_ids', topicIdsMapped);
+
+                    selectedFiles && Object.values(selectedFiles).forEach(file => {
+                        formData.append("files_images[]", file);
+                    });
+
+                    formData.append('_method', 'PATCH'); // To address php bug
+
+                    const response = await detailsApi.addDetail(formData);
 
                     if (response.data.status === 'success') {
                         setMessage(response.data.message);
@@ -71,7 +83,7 @@ function AddDetailsComponent() {
                     }
 
                 } catch (error) {
-                    console.log('error', error);
+                    console.log(error);
                 }
             };
 

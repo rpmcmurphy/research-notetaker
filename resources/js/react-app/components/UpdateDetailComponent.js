@@ -118,8 +118,6 @@ function UpdateDetailComponent() {
         });
 
         setTopicIds(newTopicIds);
-
-        console.log(newTopicIds);
     }
 
     const setDefaultValues = (allTopics) => {
