@@ -241,7 +241,7 @@ Route::post('/detail-add', function(Request $request) {
 
     if ($request->hasFile('files_images')) {
 
-        $allowedfileExtension = ['pdf', 'jpg', 'png', 'gif', 'bmp', 'docx', 'zip'];
+        $allowedfileExtension = ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'docx', 'zip'];
         $files = $request->file('files_images');
 
         foreach ($files as $file) {
@@ -320,7 +320,7 @@ Route::patch('/detail-update', function (Request $request) {
 
     if ($request->hasFile('files_images')) {
 
-        $allowedfileExtension = ['pdf', 'jpg', 'png', 'gif', 'bmp', 'docx', 'txt', 'zip'];
+        $allowedfileExtension = ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'docx', 'txt', 'zip'];
         $files = $request->file('files_images');
 
         foreach ($files as $file) {
@@ -342,17 +342,19 @@ Route::patch('/detail-update', function (Request $request) {
             }
         }
 
-        $details->files_images = json_encode($stored_filenames);
+        $details->files_images = $details->files_images ? json_encode(array_merge(json_decode($details->files_images), $stored_filenames)) : json_encode($stored_filenames);
     }
 
     $details->save();
 
-    $created_detail = Detail::find($details->id);
-    $created_detail->topics()->sync(explode(',', $request->topic_ids));
+    if($request->topic_ids != null && $request->topic_ids != '') {
+        $details->topics()->sync(explode(',', $request->topic_ids));
+    }
 
     if ($details) {
         return response()->json([
             'data' => $details,
+            'message' => 'Successfully edited.',
             'status' => 'success',
         ], 200);
     } else {
@@ -369,7 +371,6 @@ Route::post('/delete-file', function(Request $request) {
     $file_link = $request->file_link;
 
     $details = Detail::where('id', $detail_id)->firstOrFail();
-
     $files_images = json_decode($details->files_images);
 
     $key = array_search($file_link, $files_images);
@@ -393,19 +394,19 @@ Route::post('/delete-file', function(Request $request) {
             File::delete($full_image_path);
 
             return response()->json([
-                'error' => false,
+                'status' => 'success',
                 'message'  => 'Your file has been deleted.',
             ], 200);
         } else {
             return response()->json([
-                'error' => true,
+                'status' => 'error',
                 'message'  => 'Your file has not been deleted.',
             ], 200);
         }
     } else {
 
         return response()->json([
-            'error' => true,
+            'status' => 'error',
             'message'  => 'Your file has not been deleted.',
         ], 200);
     }

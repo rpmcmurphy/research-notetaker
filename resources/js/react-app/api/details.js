@@ -9,6 +9,7 @@ const updateDetail = (formData) => apiClient.post(`/detail-update`, formData, {
     headers: {
         'Content-Type': 'multipart/form-data'
     }});
+const deleteFile = (formData) => apiClient.post('/delete-file', formData);
 const deleteDetail = (id) => apiClient.get(`/detail-delete/${id}`);
 
 const getAllReactSelectTopics = () => apiClient.get('/topic-list-react-select');
@@ -24,6 +25,7 @@ export default {
     getDetail,
     addDetail,
     updateDetail,
+    deleteFile,
     deleteDetail,
     getAllReactSelectTopics,
     test

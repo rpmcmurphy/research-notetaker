@@ -6003,6 +6003,10 @@ var updateDetail = function updateDetail(formData) {
   });
 };
 
+var deleteFile = function deleteFile(formData) {
+  return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post('/delete-file', formData);
+};
+
 var deleteDetail = function deleteDetail(id) {
   return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/detail-delete/".concat(id));
 };
@@ -6021,6 +6025,7 @@ var test = function test(files_images) {
   getDetail: getDetail,
   addDetail: addDetail,
   updateDetail: updateDetail,
+  deleteFile: deleteFile,
   deleteDetail: deleteDetail,
   getAllReactSelectTopics: getAllReactSelectTopics,
   test: test
@@ -8411,6 +8416,69 @@ function UpdateDetailComponent() {
     });
   };
 
+  var handleFileDelete = function handleFileDelete(fileLink) {
+    if (detailName != null && detailName != "") {
+      setIsUpdating(true);
+
+      var updateDetailInfo = /*#__PURE__*/function () {
+        var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+          var formData, response, newDetailFiles;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+            while (1) {
+              switch (_context5.prev = _context5.next) {
+                case 0:
+                  _context5.prev = 0;
+                  formData = new FormData();
+                  formData.append('detail_id', detailId);
+                  formData.append('file_link', fileLink);
+                  _context5.next = 6;
+                  return _api_details__WEBPACK_IMPORTED_MODULE_3__["default"].deleteFile(formData);
+
+                case 6:
+                  response = _context5.sent;
+
+                  if (response.data.status === 'success') {
+                    setMessage(response.data.message);
+                    setIsUpdating(false);
+                    newDetailFiles = detailFiles.filter(function (each_file) {
+                      return each_file != fileLink;
+                    });
+                    setdetailFiles(newDetailFiles);
+                    console.log(response);
+                  } else {
+                    setIsUpdating(false);
+                    setError(true);
+                    setMessage(response.data.message);
+                    console.log(response);
+                  }
+
+                  _context5.next = 13;
+                  break;
+
+                case 10:
+                  _context5.prev = 10;
+                  _context5.t0 = _context5["catch"](0);
+                  console.log(_context5.t0);
+
+                case 13:
+                case "end":
+                  return _context5.stop();
+              }
+            }
+          }, _callee5, null, [[0, 10]]);
+        }));
+
+        return function updateDetailInfo() {
+          return _ref5.apply(this, arguments);
+        };
+      }();
+
+      updateDetailInfo();
+    } else {
+      alert("Please add a detail name and some details!");
+    }
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -8422,9 +8490,15 @@ function UpdateDetailComponent() {
             })
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
             md: 6,
-            children: isUpdating && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_SpinnerComponent__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+            children: [error && message && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "alert alert-danger",
+              children: message
+            }), !error && message && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "alert alert-danger",
+              children: message
+            }), isUpdating && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_common_SpinnerComponent__WEBPACK_IMPORTED_MODULE_4__["default"], {})]
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -8483,12 +8557,19 @@ function UpdateDetailComponent() {
                 children: detailFiles && detailFiles.length > 0 && detailFiles.map(function (detailFile, idx) {
                   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
                     sm: 4,
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Img, {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Img, {
                         variant: "top",
                         src: "".concat(_common_global_vars__WEBPACK_IMPORTED_MODULE_2__.BASE_URL, "/storage/").concat(detailFile),
                         alt: detailName
-                      })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+                        className: "mt-1",
+                        variant: "danger",
+                        onClick: function onClick() {
+                          return handleFileDelete(detailFile);
+                        },
+                        children: "Remove"
+                      })]
                     })
                   }, idx);
                 })

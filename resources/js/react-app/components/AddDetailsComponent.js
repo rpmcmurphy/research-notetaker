@@ -12,6 +12,7 @@ function AddDetailsComponent() {
     const [detailName, setDetailName] = useState("");
     const [details, setDetails] = useState("");
     const [topicIds, setTopicIds] = useState([]);
+    const [selectedFiles, setSelectedFiles] = useState(null);
     const [isAdding, setIsAdding] = useState(false);
     const [error, setError] = useState(false);
     const [errorType, setErrorType] = useState("");
@@ -128,6 +129,12 @@ function AddDetailsComponent() {
                                 <Form.Group className="mb-3" controlId="formDetails">
                                     <Form.Label>Details</Form.Label>
                                     <Form.Control as="textarea" rows={3} value={details} onChange={(e) => setDetails(e.target.value)}  placeholder="Add some details" />
+                                </Form.Group>
+                            </Row>
+                            <Row className="mb-3">
+                                <Form.Group controlId="formFileUpload" className="mb-3">
+                                    <Form.Label>Upload images/files</Form.Label>
+                                    <Form.Control type="file" multiple onChange={(e) => setSelectedFiles(e.target.files)} />
                                 </Form.Group>
                             </Row>
                             <Row>

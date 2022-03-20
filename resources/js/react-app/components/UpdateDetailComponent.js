@@ -126,6 +126,44 @@ function UpdateDetailComponent() {
         return allTopics.filter(topic => selectedTopics.find(selectedId => selectedId == topic.value)).map(id => id);
     }
 
+    const handleFileDelete = (fileLink) => {
+
+        if (detailName != null && detailName != "") {
+            setIsUpdating(true);
+
+            const updateDetailInfo = async () => {
+                try {
+                    let formData = new FormData();
+
+                    formData.append('detail_id', detailId);
+                    formData.append('file_link', fileLink);
+
+                    const response = await detailApi.deleteFile(formData);
+
+                    if (response.data.status === 'success') {
+                        setMessage(response.data.message);
+                        setIsUpdating(false);
+                        const newDetailFiles = detailFiles.filter((each_file) => each_file != fileLink);
+                        setdetailFiles(newDetailFiles);
+                        console.log(response);
+                    } else {
+                        setIsUpdating(false);
+                        setError(true);
+                        setMessage(response.data.message);
+                        console.log(response);
+                    }
+
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+
+            updateDetailInfo();
+        } else {
+            alert("Please add a detail name and some details!");
+        }
+    }
+
     return (
         <>
             <Row>
@@ -137,19 +175,17 @@ function UpdateDetailComponent() {
                     </Row>
                     <Row>
                         <Col md={6}>
-                            {/* {
+                            {
                                 (error && message) && <div className="alert alert-danger">{message}</div>
-                            } */}
+                            }
+
+                            {
+                                (!error && message) && <div className="alert alert-danger">{message}</div>
+                            }
 
                             {
                                 isUpdating && <SpinnerComponent />
                             }
-
-                            {/* {allTopics && selectedTopics && allTopics.filter(topic => selectedTopics.find(selectedId => selectedId == topic.value)).map(value => (
-                                <li>
-                                    {value}
-                                </li>
-                            ))} */}
                         </Col>
                     </Row>
                     <Row>
@@ -179,6 +215,7 @@ function UpdateDetailComponent() {
                                         (detailFiles && detailFiles.length > 0) && detailFiles.map((detailFile, idx) => {
                                             return (<Col sm={4} key={idx}><Card>
                                                 <Card.Img variant="top" src={`${BASE_URL}/storage/${detailFile}`} alt={detailName} />
+                                                <Button className="mt-1" variant="danger" onClick={() => handleFileDelete(detailFile) }>Remove</Button>
                                             </Card></Col>);
                                         })
                                     }
