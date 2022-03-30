@@ -241,7 +241,7 @@ Route::patch('/detail-add', function(Request $request) {
 
     if ($request->hasFile('files_images')) {
 
-        $allowedfileExtension = ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'docx', 'zip'];
+        $allowedfileExtension = ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'docx', 'txt', 'zip', 'mp4', 'mp3', 'flv', 'mkv'];
         $files = $request->file('files_images');
 
         foreach ($files as $file) {
@@ -321,7 +321,7 @@ Route::patch('/detail-update', function (Request $request) {
 
     if ($request->hasFile('files_images')) {
 
-        $allowedfileExtension = ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'docx', 'txt', 'zip'];
+        $allowedfileExtension = ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'docx', 'txt','zip', 'mp4', 'mp3', 'flv', 'mkv'];
         $files = $request->file('files_images');
 
         foreach ($files as $file) {
