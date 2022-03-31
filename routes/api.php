@@ -69,7 +69,7 @@ Route::get('/topic/{id}', function ($id) {
 Route::post('/topic-add', function (Request $request) {
 
     $validator = Validator::make($request->all(), [
-        'topic_name' => 'required|min:3',
+        'topic_name' => 'required|min:2',
     ]);
 
     if ($validator->fails()) {
@@ -78,7 +78,7 @@ Route::post('/topic-add', function (Request $request) {
 
         return response()->json([
             'status' => 'error',
-            'message' => $message
+            'message' => Arr::flatten($message->all())
         ], 200);
     }
 
