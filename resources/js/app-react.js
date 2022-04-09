@@ -16,6 +16,7 @@ import thunk from 'redux-thunk';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './react-app/App';
+import ScrollToTop from './react-app/common/ScrollToTop';
 
 // import rootReducer from './react-app/reducers/index';
 import rootReducer from './react-app/store/rootReducer';
@@ -29,6 +30,7 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 ReactDom.render(
     <Provider store={store}>
         <Router>
+            <ScrollToTop />
             <App />
         </Router>
     </Provider>,

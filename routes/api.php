@@ -56,6 +56,25 @@ Route::get('/topic-list/{page_num?}', function ($page_num = 1) {
     ], 200);
 });
 
+Route::get('/topic/{topic_id?}', function (Request $request, $topic_id = null) {
+
+    $page = $request->query('page', 1);
+
+    $details_list = Detail::query()
+        ->with(['topics' => function ($query) use($topic_id) {
+            $query->select('id', 'name');
+            $query->where('id', '=', $topic_id);
+        }])
+        ->orderBy('created_at', 'desc')
+        ->paginate(10, ['id', 'details_name', 'details', 'files_images'], 'page', $page);
+
+    return response()->json([
+        'data' => $details_list,
+        'status' => 'success',
+        'page' => $page,
+    ], 200);
+});
+
 Route::get('/topic/{id}', function ($id) {
     $topic = Topic::where('id', $id)
         ->first();
@@ -194,7 +213,7 @@ Route::get('/detail-list/{page_num?}', function ($page_num = 1) {
 Route::get('/detail/{id}', function($id) {
     $detail = Detail::query()
         ->with(['topics' => function ($query) {
-            $query->select('id');
+            $query->select('id', 'name');
         }])
         ->where('id', $id)
         ->first();

@@ -63,8 +63,11 @@ const DetailsComponent = () => {
                                     <ListGroup.Item className='d-flex justify-content-between align-items-center' key={item.id}>
                                         <h5 className='list-table-item mr-auto mb-0'>{item.details_name}</h5>
                                         <div className='d-flex'>
-                                            <LinkContainer to={`/detail-edit/${item.id}`}>
+                                            <LinkContainer to={`/detail-view/${item.id}`}>
                                                 <Nav.Link className='list-nav-link'>View</Nav.Link>
+                                            </LinkContainer>
+                                            <LinkContainer to={`/detail-edit/${item.id}`}>
+                                                <Nav.Link className='list-nav-link'>Edit</Nav.Link>
                                             </LinkContainer>
                                             <LinkContainer to={`/detail-delete/${item.id}`}>
                                                 <Nav.Link className='list-nav-link bg-danger'>Delete</Nav.Link>

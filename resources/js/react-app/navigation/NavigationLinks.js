@@ -27,6 +27,9 @@ const NavigationLinks = () => {
                             <LinkContainer to="/details">
                                 <Nav.Link>Details</Nav.Link>
                             </LinkContainer>
+                            <LinkContainer to="/details-cards">
+                                <Nav.Link>Details cards</Nav.Link>
+                            </LinkContainer>
                             <LinkContainer to="/add-detail">
                                 <Nav.Link>Add Detail</Nav.Link>
                             </LinkContainer>

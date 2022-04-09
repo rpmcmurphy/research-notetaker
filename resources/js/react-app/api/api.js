@@ -1,7 +1,9 @@
 import { create } from 'apisauce';
 
+import { BASE_URL } from '../common/global-vars';
+
 const appCLient = create({
-    baseURL: `http://research-details.local/api/`,
+    baseURL: `${BASE_URL}api/`,
     headers: {
         'Content-Type': 'application/json',
         // 'Accept': 'application/json',

@@ -9,13 +9,12 @@
     margin-right: 5px;
     font-size: 8px;
     font-weight: 700;
-    color: #fff;
+    color: #000;
     text-transform: uppercase;
     text-align: center;
-    white-space: nowrap;
     vertical-align: middle;
     cursor: pointer;
-    background-color: #007bff;
+    background-color: #eee;
     border: 1px solid transparent;
     border-radius: 0.25rem;
     transition: all 0.15s ease-in-out;
@@ -25,8 +24,8 @@
     }
 
     &:hover {
-        background-color: #0069d9;
-        border-color: #0062cc;
-        color: #fff;
+        background-color: darken(#eee, 10%);
+        border-color: transparent;
+        color: #000;
     }
 }

@@ -2,6 +2,7 @@ import apiClient from './api';
 
 const getAllDetails = () => apiClient.get('/detail-list');
 const getDetails = (currentPage) => apiClient.get(`/detail-list/${currentPage}`);
+const getDetailsByTopic = (topicId, currentPage) => apiClient.get(`/topic/${topicId}/?page=${currentPage}`);
 const getDetail = (id) => apiClient.get(`/detail/${id}`);
 const addDetail = (formData) => apiClient.post(`/detail-add`, formData, {
     headers: {
@@ -25,6 +26,7 @@ const test = (files_images) => {
 export default {
     getAllDetails,
     getDetails,
+    getDetailsByTopic,
     getDetail,
     addDetail,
     updateDetail,
