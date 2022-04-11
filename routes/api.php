@@ -461,8 +461,8 @@ Route::post('/search-result', function(Request $request) {
 
     if ($request->has('searchTerm') && $term != '' && $term != null) {
         $details->where(function ($query) use ($term) {
-            $query->where('details_name', 'LIKE', '%' . $term . '%')
-                ->orWhere('details', 'LIKE', '%' . $term . '%');
+            $query->where('details_name', 'LIKE', '%' . $term . '%');
+                // ->orWhere('details', 'LIKE', '%' . $term . '%');
         });
     }
 
